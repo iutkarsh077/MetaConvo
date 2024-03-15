@@ -1,11 +1,80 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# Meta Convo - A Chat app
 
+The chat application under development aims to provide users with seamless communication capabilities utilizing web sockets and WebRTC technology. This combination enables real-time, one-to-one interactions between users, allowing them to exchange messages, images, and potentially even conduct video calls directly within the application. The integration of web sockets ensures instant message delivery and updates, while WebRTC facilitates high-quality audio and video communication without the need for additional plugins or software. Overall, this application seeks to offer a user-friendly and efficient platform for individuals to connect and communicate with each other in real-time.
+
+
+## API Reference
+
+#### Get all items
+
+```http
+  POST /api/auth/signupapi
+  POST /api/auth/loginapi
+  POST api/auth/forgotPassword
+
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `MONGODB_URI` | `string` | **Required**. Your API key |
+| `JWT_SECRET` | `string` | **Required**. Your API key |
+| `SMTp_EMAIL` | `string` | **Required**. Your API key |
+| `SMTP_PASSWORD` | `string` | **Required**. Your API key |
+
+#### Get item
+
+```http
+  GET /api/items/${id}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `string` | **Required**. Id of item to fetch |
+
+#### /signupapi(name, email)
+
+You can signup through the above parameters.
+
+#### /loginapi(email, password)
+
+You can Login through the above parameters.
+
+
+
+## Author
+
+- [@iutkarsh077](https://github.com/iutkarsh077)
+
+
+## Deployed at Vercel
+
+Insert gif or link to demo
+https://meta-convo.vercel.app/
+## Environment Variables
+
+To run this project, you will need to add the following environment variables to your .env file
+
+`MONGODB_URI`
+
+`JWT_SECRET`
+`SMTP_EMAIL`
+`SMTP_PASSWORD`
+
+## 🚀 About Me
+I'm a full stack developer...
+
+I am a second year student at IK Gujral Punjab Technical University pursuing a bachelor’s degree in Computer Science Engineering || MERN Developer
+## 🔗 Links
+[![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://iutkarsh077.github.io/Portfolio/)
+
+
+## Installation
+
+Install my-project with npm
 First, run the development server:
-
 ```bash
-npm run dev
+  npm run dev
 # or
 yarn dev
 # or
@@ -14,23 +83,16 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000 with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+You can start editing the page by modifying app/page.tsx. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+This project uses next/font to automatically optimize and load Inter, a custom Google Font.
+    
+## Tech Stack
 
-## Learn More
+**Client:** React, Redux, TailwindCSS, NextJs 14, shadcn
 
-To learn more about Next.js, take a look at the following resources:
+**Server:** Node, Express, Mongodb
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
