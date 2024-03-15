@@ -1,14 +1,14 @@
+import Login from "@/components/Login";
 import Navbar from "@/components/Navbar/Navbar";
-import MainPage from "@/components/housePage";
 import React from "react";
 
-const Home = () => {
+const Log = () => {
   return (
     <div>
       <Navbar />
-      <MainPage/>
+      <Login />
     </div>
   );
 };
 
-export default Home;
+export default Log;
