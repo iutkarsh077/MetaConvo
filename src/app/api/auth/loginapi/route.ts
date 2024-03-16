@@ -31,7 +31,7 @@ export async function POST(req: NextRequest) {
             httpOnly: true,
             sameSite: 'lax',
         });
-        return NextResponse.json({ success: true, msg: "Login Success" }, { status: 200 })
+        return NextResponse.json({ success: true, msg: "Login Success", isLoggedIn: true }, { status: 200 })
     } catch (error) {
         // console.log(error);
         return NextResponse.json({ success: false, msg: "Internal Server Error" }, { status: 500 })

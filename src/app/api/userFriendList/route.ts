@@ -24,17 +24,19 @@ export async function GET() {
         // console.log(userId);
         const user = await ChatApp.findById({ _id: userId });
         console.log(user);
-        let AllFriendDetails = [];
 
-        for (let i = 0; i < user?.friends.length; i++) {
+        /*for (let i = 0; i < user?.friends.length; i++) {
             const friend = await ChatApp.findOne({ email: user?.friends[i] });
             if (friend) {
                 AllFriendDetails.push(friend);
             }
-        }
+        }*/
+
+        const AllFriendDetails = await ChatApp.find({ email: { $in: user.friends } });
 
         console.log(AllFriendDetails);
-        return NextResponse.json(AllFriendDetails)
+        const isLoggedIn = true;
+        return NextResponse.json({AllFriendDetails, isLoggedIn})
     } catch (error) {
         return NextResponse.json({ status: false, msg: "Error Fetching Friends List" }, { status: 400 })
     }

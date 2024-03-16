@@ -1,8 +1,9 @@
 "use client";
 import RedLoadingCircle from "@/utils/Loader";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import ListedFriends from "./ListedFriends";
+import { UserContext } from "@/components/UserContext/DataContext";
 
 interface Friend {
   name: string;
@@ -15,7 +16,7 @@ interface Friend {
 const FriendListedPage = () => {
   const [friendsData, setFriendsData] = useState<Friend[]>([]);
   const [loading, setLoading] = useState(true); 
-
+  const {setIsLoggedInClient} = useContext(UserContext);
   useEffect(() => {
     const fetchFriends = async () => {
       try {
@@ -23,8 +24,9 @@ const FriendListedPage = () => {
         
         const res = await fetch("api/userFriendList", { method: "GET" });
         const data = await res.json();
-        // console.log(data);
-        setFriendsData(data);
+        console.log(data.isLoggedIn);
+        setFriendsData(data.AllFriendDetails);
+        setIsLoggedInClient(data.isLoggedIn);
         setLoading(false); 
       } catch (error) {
         console.log(error);
