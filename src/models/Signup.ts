@@ -27,6 +27,10 @@ const SignInSchema = new mongoose.Schema({
         required: true
     },
 
+    friends: {
+        type: Array,
+        default: [],
+    },
 }, { timestamps: true })
 
 const ChatApp = mongoose.models.ChatAppSignUp || mongoose.model('ChatAppSignUp', SignInSchema);

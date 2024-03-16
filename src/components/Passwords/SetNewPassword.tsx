@@ -41,7 +41,7 @@ const SetNewPassword = ({ email }: { email: string }) => {
 
   return (
     <div>
-      <div className="max-h-screen mt-10 flex flex-col overflow-hidden items-center justify-center">
+      <div className="max-h-screen mt-20 flex flex-col overflow-hidden items-center justify-center">
         <Toaster />
         <section>
           <div className="grid grid-cols-1 lg:grid-cols-2">

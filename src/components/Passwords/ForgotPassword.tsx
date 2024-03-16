@@ -36,12 +36,12 @@ const ForgotPassword = () => {
     return <VerifyEmailForPassword myotp={otp} email={email}/>
   }
   return (
-    <div className="max-w-md mx-auto mt-8 p-6 rounded-md">
+    <div className="max-w-md mx-auto mt-20 p-6 rounded-md">
       <Toaster />
       <h2 className="text-2xl font-semibold mb-4">Forgot Password</h2>
       <form onSubmit={handleForgotPassword}>
         <div className="mb-4">
-          <label htmlFor="name" className="block font-semibold mb-2">
+          <label htmlFor="email" className="block font-semibold mb-2">
             Email
           </label>
           <input
