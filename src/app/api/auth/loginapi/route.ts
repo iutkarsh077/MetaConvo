@@ -28,7 +28,8 @@ export async function POST(req: NextRequest) {
         const theme = cookieStore.set('myToken', token, {
             path: '/',
             maxAge: 60 * 60 * 24,
-            httpOnly: true,        
+            httpOnly: true,
+            sameSite: 'lax',
         });
         return NextResponse.json({ success: true, msg: "Login Success" }, { status: 200 })
     } catch (error) {
