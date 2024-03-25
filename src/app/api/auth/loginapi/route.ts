@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
         }
 
         const jwtSecret = process.env.JWT_SECRET as string;
-        const token = jwt.sign({ id: findUser._id }, jwtSecret, { expiresIn: "1d" });
+        const token = jwt.sign({ id: findUser._id, email: findUser.email }, jwtSecret, { expiresIn: "1d" });
 
         const cookieStore = cookies()
         const theme = cookieStore.set('myToken', token, {
@@ -31,7 +31,7 @@ export async function POST(req: NextRequest) {
             httpOnly: true,
             sameSite: 'lax',
         });
-        return NextResponse.json({ success: true, msg: "Login Success", isLoggedIn: true }, { status: 200 })
+        return NextResponse.json({ success: true, msg: "Login Success", isLoggedIn: true, findUser }, { status: 200 })
     } catch (error) {
         // console.log(error);
         return NextResponse.json({ success: false, msg: "Internal Server Error" }, { status: 500 })

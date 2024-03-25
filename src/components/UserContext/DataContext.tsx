@@ -1,5 +1,5 @@
 "use client";
-import { createContext, ReactNode, useState } from "react";
+import { createContext, ReactNode, useEffect, useState } from "react";
 
 interface Friend {
   name: string;
@@ -9,13 +9,23 @@ interface Friend {
   email: string;
 }
 
+interface User {
+  _id: string;
+  name: string;
+  avatar: string;
+  About: string;
+  email: string;
+}
+
 interface UserContextType {
   singleUserChat: Friend;
-  setSingleUserChat: (friend: Friend) => void;
+  setSingleUserChat: React.Dispatch<React.SetStateAction<Friend>>;
   selectedToChat: boolean;
   setSelectedToChat: React.Dispatch<React.SetStateAction<boolean>>;
   setIsLoggedInClient: React.Dispatch<React.SetStateAction<boolean>>;
-  isLoggedInClient: boolean
+  isLoggedInClient: boolean;
+  setSenderId: React.Dispatch<React.SetStateAction<User | undefined>>;
+  senderId: User | undefined;
 }
 
 export const UserContext = createContext<UserContextType>({
@@ -23,15 +33,37 @@ export const UserContext = createContext<UserContextType>({
   setSingleUserChat: () => {},
   selectedToChat: false,
   setSelectedToChat: () => {},
-  setIsLoggedInClient: ()=> {},
-  isLoggedInClient: false
+  setIsLoggedInClient: () => {},
+  isLoggedInClient: false,
+  setSenderId: () => {},
+  senderId: undefined,
 });
 
 const GlobalContextProvider = ({ children }: { children: ReactNode }) => {
   const [singleUserChat, setSingleUserChat] = useState<Friend>({} as Friend);
   const [selectedToChat, setSelectedToChat] = useState<boolean>(false);
   const [isLoggedInClient, setIsLoggedInClient] = useState<boolean>(false);
-  console.log(isLoggedInClient);
+  const [senderId, setSenderId] = useState<User | undefined>(undefined);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const res = await fetch('/api/auth/UserDetails',{
+          method: 'GET',
+        })
+        const data = await res.json();
+        if(data){
+          setIsLoggedInClient(true);
+          setSenderId(data.UserDetails);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchUser();
+  }, []);
+
+  console.log(senderId)
   return (
     <UserContext.Provider
       value={{
@@ -40,7 +72,9 @@ const GlobalContextProvider = ({ children }: { children: ReactNode }) => {
         selectedToChat,
         setSelectedToChat,
         setIsLoggedInClient,
-        isLoggedInClient
+        isLoggedInClient,
+        setSenderId,
+        senderId,
       }}
     >
       {children}

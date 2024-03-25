@@ -1,10 +1,15 @@
 import { NextResponse, type NextRequest } from 'next/server';
-import { cookies } from 'next/headers'
+import { cookies } from 'next/headers';
 interface MyCookies {
     myToken?: string;
 }
 
+// const allowedOrigins = process.env.NODE_ENV === 'production' ? [''] : ['http://localhost:5000'];
+
 export function middleware(req: NextRequest) {
+
+    
+
     const cookieStore = cookies()
     const token = cookieStore.get('myToken')?.value;
     // console.log(token);
@@ -15,4 +20,6 @@ export function middleware(req: NextRequest) {
     if (token && token.length > 100 && (req.nextUrl.pathname === '/Login' || req.nextUrl.pathname === '/Signup')) {
         return NextResponse.redirect(new URL('/', req.url));
     }
+
+    return NextResponse.next();
 }

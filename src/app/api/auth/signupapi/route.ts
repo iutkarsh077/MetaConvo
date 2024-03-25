@@ -14,7 +14,8 @@ export async function POST(req: NextRequest) {
         }
         const salt = await bcryptjs.genSalt(10);
         const hashedPassword = await bcryptjs.hash(password, salt);
-        const CreateUser = await ChatApp.create({name: name, email: email, password: hashedPassword});
+        const avatar = name[0].toUpperCase();
+        const CreateUser = await ChatApp.create({name: name, email: email, password: hashedPassword, avatar: avatar});
 
         return NextResponse.json({ success: true, msg: "User Signup Successfully" }, { status: 201 });
     } catch (error) {

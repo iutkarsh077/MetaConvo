@@ -10,7 +10,7 @@ const MainPage = () => {
     </div>
   
    
-    <div className="hidden sm:block right-0 sm:w-2/3 h-full fixed top-20">
+    <div className="hidden sm:block right-0 sm:w-2/3 h-full sticky top-20">
       <ChatPage />
     </div>
   </div>
