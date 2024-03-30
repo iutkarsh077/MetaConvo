@@ -49,7 +49,7 @@ const ChatPage = () => {
   };
 
   async function connectToWs() {
-    const ws = new WebSocket('ws://localhost:5000');
+    const ws = new WebSocket('https://server-metaconvo.onrender.com');
     setWs(ws);
     ws.addEventListener('message', handleReceiveMsg);
     ws.addEventListener('close', () => {
