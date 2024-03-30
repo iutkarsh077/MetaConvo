@@ -48,7 +48,7 @@ const ChatPage = () => {
     }
   };
 
-  function connectToWs() {
+  async function connectToWs() {
     const ws = new WebSocket('ws://localhost:5000');
     setWs(ws);
     ws.addEventListener('message', handleReceiveMsg);

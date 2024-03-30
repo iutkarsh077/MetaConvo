@@ -16,7 +16,8 @@ export async function POST(req: NextRequest) {
         const getAllMessages = await MessageModel.find({
             sender: { $in: [UserId, selectedUserToChat] },
             recipient: { $in: [UserId, selectedUserToChat] }
-        }).sort({ createdAt: 1 })
+        }).sort({ createdAt: 1 });
+
 
         console.log(getAllMessages);
         return NextResponse.json({ status: true, msg: "Success get msg", getAllMessages }, { status: 201 })

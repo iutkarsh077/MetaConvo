@@ -21,6 +21,9 @@ export async function POST(req: NextRequest){
             text: msg,
             UniqueMessageId: uniqueMessageId
         })
+
+        
+
         return NextResponse.json({msg: "Data Is Saved", savedMsg}, {status: 201});
          } catch (error) {
             console.log(error);
